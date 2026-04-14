@@ -1,0 +1,319 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: #f0f2f5;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Container principal - OCUPA 100% DA TELA */
+    .caixa-principal {
+      width: 100%;
+      min-height: 100vh;
+      background: white;
+      display: flex;
+    }
+
+    /* Sidebar - CORRIGIDA */
+    .caixa-lateral {
+      background-color: #130757;
+      width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      justify-content: space-evenly;
+      min-height: 100vh;
+      padding-left: 20px;
+    }
+
+    /* Posicionamento do botão calendário (TOPO) */
+    .caixa-lateral-btn-calend {
+      cursor: pointer;
+    }
+
+    /* Posicionamento do botão mais (BAIXO) */
+    .caixa-lateral-btn-mais {
+      background-color: #fff;
+      border-radius: 15px 15px 15px 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .caixa-lateral-btn-mais:hover {
+      transform: scale(1.05);
+    }
+
+    .imgs-caixa-lateral {
+      padding: 20px;
+      width: 100px;
+      height: 100px;
+      display: block;
+    }
+
+    /* Conteúdo principal - OCUPA RESTO DA TELA */
+    .caixa-conteudo {
+      flex: 1;
+      padding: 50px 170px;
+      overflow-y: auto;
+    }
+
+    /* Título */
+    .caixa-titulo {
+      margin-bottom: 40px;
+    }
+
+    .text-titulo {
+      color: #41658A;
+      font-weight: bold;
+      font-size: 32px;
+      text-transform: uppercase;
+      margin: 0;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .caixa-form {
+      border-radius: 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #d3e2f1;
+      border-radius: 15px;
+      padding: 20px 0px 20px 0px;
+    }
+
+    /* Labels */
+    label {
+      color: #41658A;
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    /* Campos de input e select */
+    input, select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #130757;
+      box-shadow: 0 0 0 2px rgba(19, 7, 87, 0.1);
+    }
+
+    input::placeholder {
+      color: #999;
+      font-style: italic;
+    }
+
+    /* Layout de 2 colunas */
+    .linha-dois-campos {
+      display: flex;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .campo-metade {
+      flex: 1;
+    }
+    .input-com-icone {
+      position: relative;
+      width: 100%;
+    }
+
+    .input-com-icone input {
+      width: 100%;
+      padding: 12px 40px 12px 15px;  /* Espaço à direita para o ícone */
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+    }
+
+    .icone-input {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;  /* Permite clicar através do ícone */
+    }
+
+    .icone-input svg {
+      width: 18px;
+      height: 18px;
+      fill: #000;
+    }
+
+    /* Campo normal (largura total) */
+    .campo-full {
+      margin-bottom: 25px;
+    }
+
+    /* Grupo de checkboxes */
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    .checkbox-opcao {
+      display: inline-block;
+      margin-right: 35px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .checkbox-opcao input {
+      width: auto;
+      margin: 0px 10px;
+      transform: scale(1.1);
+      vertical-align: middle;
+      cursor: pointer;
+    }
+
+    .checkbox-opcao label {
+      display: inline-block;
+      margin-bottom: 0;
+      font-weight: normal;
+      color: #333;
+      text-transform: none;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+
+    /* Botões */
+    .linha-botoes {
+      display: flex;
+      gap: 20px;
+      margin-top: 35px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+
+    .btn-cancelar {
+      background-color: #41658a;
+      color: #130757;
+    }
+
+    .btn-cancelar:hover {
+      background-color: #c0392b;
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .btn-confirmar {
+      background-color: #130757;
+      color: white;
+    }
+
+    .btn-confirmar:hover {
+      background-color: #008000;
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 1024px) {
+      .caixa-conteudo {
+        padding: 40px 50px;
+      }
+      
+      .text-titulo {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .caixa-principal {
+        flex-direction: column;
+      }
+
+      .caixa-lateral {
+        width: 100%;
+        min-height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+      }
+
+      .caixa-lateral-btn-calend {
+        padding-top: 0;
+        margin-bottom: 0;
+      }
+
+      .caixa-lateral-btn-mais {
+        margin-left: 0;
+        margin-bottom: 0;
+        border-radius: 15px;
+      }
+
+      .caixa-conteudo {
+        padding: 30px 25px;
+      }
+
+      .text-titulo {
+        font-size: 24px;
+      }
+
+      .linha-dois-campos {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .checkbox-opcao {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .caixa-conteudo {
+        padding: 20px;
+      }
+
+      .text-titulo {
+        font-size: 20px;
+      }
+
+      .linha-botoes {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .btn {
+        padding: 12px;
+      }
+    }

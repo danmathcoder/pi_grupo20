@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, width=device-width">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="./estilo_agendamento.css">
+  
+  
+  <title>Novo Agendamento</title>
+</head>
+
+<body>
+
+  <div class="caixa-principal">
+    
+    <!-- Barra lateral -->
+   <div class="caixa-lateral">
+      <div class="caixa-lateral-btn-calend">        
+        <svg class="imgs-caixa-lateral" fill="#fff" viewBox="0 0 24 24" class="imgs-caixa-lateral">
+        <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/>
+        </svg>
+      </div>
+
+      <div class="caixa-lateral-btn-mais">
+       <svg width="24" height="24" viewBox="0 0 24 24" color="#130757" xmlns="http://www.w3.org/2000/svg" class="imgs-caixa-lateral">
+      <path d="M12 4V20M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      </div>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="caixa-conteudo">
+      
+      <div class="caixa-titulo">
+        <h1 class="text-titulo">NOVO AGENDAMENTO</h1>
+      </div>
+
+      <div class="caixa-form">
+        <form action="#" method="post" autocomplete="on">
+          
+          <!-- Linha: Nome e Sobrenome -->
+          <div class="linha-dois-campos">
+            <div class="campo-metade">
+              <label for="fnome">Nome:</label>
+              <input type="text" id="fnome" name="fnome" placeholder="Informe o nome aqui....">
+            </div>
+            
+            <div class="campo-metade">
+              <label for="fsobrenome">Sobrenome:</label>
+              <input type="text" id="fsobrenome" name="fsobrenome" placeholder="Informe o sobrenome aqui....">
+            </div>
+          </div>
+
+          <!-- Campo Telefone -->
+          <div class="campo-full">
+            <label for="ftel">Telefone:</label>
+            <input type="tel" id="ftel" name="ftel" placeholder="(XX) XXXX-XXXX ou XXXXX-XXXX" oninput="mascaraTelefone(event)">
+          </div>
+
+          <!-- Campo Serviços como CHECKBOX -->
+          <div class="campo-full">
+            <label>Tipo do serviço:</label>
+            <div class="checkbox-group">
+              <label class="checkbox-opcao">
+                <input type="checkbox" value="manicure"> Manicure
+              </label>
+              <label class="checkbox-opcao">
+                <input type="checkbox" value="pedicure"> Pedicure
+              </label>
+              <label class="checkbox-opcao">
+                <input type="checkbox" value="cabelereira"> Cabeleireira
+              </label>
+            </div>
+          </div>
+
+          <!-- Linha: Data e Horário -->
+          <div class="linha-dois-campos">
+            <div class="campo-metade">
+              <label for="fdata">Data:</label>
+              <input type="date" id="fdata" name="fdata" placeholder="00/00/0000">
+            </div>
+            
+            <div class="campo-metade">
+              <label for="fhora">Horário:</label>             
+              <div class="input-com-icone">              
+              <input type="time" id="fhora" name="fhora" placeholder="00:00">
+              <span class="icone-input">
+                <svg viewBox="0 0 24 24">
+                 <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7z"/>
+                 </svg>
+              </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botões cancelar e confirmar -->
+          <div class="linha-botoes">
+            <button type="reset" class="btn btn-cancelar">Cancelar</button>
+            <button type="submit" class="btn btn-confirmar">Confirmar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <!-- Script para a máscara do campo telefone -->
+  <script src="./regex.js"></script>
+</body>
+
+</html>
