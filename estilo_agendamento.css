@@ -17,51 +17,50 @@
       width: 100%;
       min-height: 100vh;
       background: white;
-      display: flex;
+      display: grid;
+      grid-template-columns: 70px auto;
     }
 
-    /* Sidebar - CORRIGIDA */
+    /* Barra lateral */
     .caixa-lateral {
       background-color: #130757;
-      width: 100px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
       justify-content: space-evenly;
-      min-height: 100vh;
-      padding-left: 20px;
+      padding: 2rem 1rem;
     }
 
     /* Posicionamento do botão calendário (TOPO) */
-    .caixa-lateral-btn-calend {
-      cursor: pointer;
+    .caixa-lateral-btn {
+      display: flex;
+      border-radius: 12px 0px 0px 12px;
+      transition: all 0.3s ease;      
+      border: none;
+      background-color: #fff;
+    }
+
+    .caixa-lateral-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     /* Posicionamento do botão mais (BAIXO) */
-    .caixa-lateral-btn-mais {
-      background-color: #fff;
-      border-radius: 15px 15px 15px 15px;
+    .caixa-lateral-btn-calend {
+      background: transparent;
+      color: #fff;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
 
-    .caixa-lateral-btn-mais:hover {
-      transform: scale(1.05);
-    }
-
-    .imgs-caixa-lateral {
-      padding: 20px;
-      width: 100px;
-      height: 100px;
-      display: block;
+    .icon-caixa-lateral {
+      fill: currentColor;
+      width: 70px;
+      height: 70px;      
     }
 
     /* Conteúdo principal - OCUPA RESTO DA TELA */
-    .caixa-conteudo {
-      flex: 1;
-      padding: 50px 170px;
-      overflow-y: auto;
+    .caixa-conteudo {      
+      padding: 50px 170px;      
     }
 
     /* Título */
@@ -169,9 +168,7 @@
 
     /* Grupo de checkboxes */
     .checkbox-group {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: block;
       padding: 10px 0;
     }
 
@@ -256,7 +253,7 @@
 
     @media (max-width: 768px) {
       .caixa-principal {
-        flex-direction: column;
+        display: block;
       }
 
       .caixa-lateral {
@@ -273,7 +270,7 @@
         margin-bottom: 0;
       }
 
-      .caixa-lateral-btn-mais {
+      .caixa-lateral-btn {
         margin-left: 0;
         margin-bottom: 0;
         border-radius: 15px;
