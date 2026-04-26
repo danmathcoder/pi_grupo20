@@ -1,133 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agenda - Consulta de Horários</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <base target="_blank">
-  <link rel="stylesheet" href="consulta.css">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <base target="_blank" />
+    <link rel="stylesheet" href="consulta.css" />
+  </head>
+  <body>
     <div class="app">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <button class="sidebar__btn" aria-label="Calendário">
-                <svg class="sidebar__icon" viewBox="0 0 24 24" color="#130757">
-                    <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/>
-                </svg>
-            </button>
-            <button class="sidebar__btn sidebar__btn--add" aria-label="Adicionar">
-                <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                    <path d="M12 4V20M4 12H20"/>
-                </svg>
-            </button>
-        </aside>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <button class="sidebar__btn" aria-label="Calendário">
+          <svg class="sidebar__icon" viewBox="0 0 24 24" color="#130757">
+            <path
+              d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z" />
+          </svg>
+        </button>
+        <button class="sidebar__btn sidebar__btn--add" aria-label="Adicionar">
+          <svg
+            class="sidebar__icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round">
+            <path d="M12 4V20M4 12H20" />
+          </svg>
+        </button>
+      </aside>
 
-        <!-- Main Content -->
-        <main class="main">
-            <header class="header">
-                <h1 class="header__title">AGENDA</h1>
-            </header>
+      <!-- Main Content -->
+      <main class="main">
+        <header class="header">
+          <h1 class="header__title">AGENDA</h1>
+        </header>
 
-            <div class="content">
-                <!-- Calendar Column -->
-                <section class="calendar-section">
-                    <div class="day-card">
-                        <div class="day-card__number" id="diaNumero">18</div>
-                        <div class="day-card__weekday" id="diaSemana">Quarta-Feira</div>
-                        <div class="day-card__month-year" id="diaMesAno">Fevereiro 2026</div>
-                    </div>
-
-                    <div class="calendar">
-                        <div class="calendar__header">
-                            <button class="calendar__nav" onclick="mesAnterior()">◀</button>
-                            <span class="calendar__month-year" id="mesAnoAtual">Fev 2026</span>
-                            <button class="calendar__nav" onclick="proximoMes()">▶</button>
-                        </div>
-                        <div class="calendar__weekdays">
-                            <span class="calendar__weekday">D</span>
-                            <span class="calendar__weekday">S</span>
-                            <span class="calendar__weekday">T</span>
-                            <span class="calendar__weekday">Q</span>
-                            <span class="calendar__weekday">Q</span>
-                            <span class="calendar__weekday">S</span>
-                            <span class="calendar__weekday">S</span>
-                        </div>
-                        <div class="calendar__days" id="diasMes"></div>
-                    </div>
-                </section>
-
-                <!-- Schedule Column -->
-                <section class="schedule-section">
-                    <h2 class="schedule__header">Agendamento de horários</h2>
-                    <div class="schedule__grid">
-                        <div class="time-slot time-slot--booked">
-                            <div class="time-slot__avatar"></div>
-                            <span class="time-slot__time">10:10</span>
-                            <div class="time-slot__info">
-                                <div class="time-slot__client">Beatriz</div>
-                                <div class="time-slot__service">Manicure</div>
-                            </div>
-                            <span class="time-slot__badge time-slot__badge--booked">Agendado</span>
-                            <span class="time-slot__menu">⋯</span>
-                        </div>
-
-                        <div class="time-slot">
-                            <div class="time-slot__avatar"></div>
-                            <span class="time-slot__time">11:00</span>
-                            <span class="time-slot__badge time-slot__badge--available">Disponível</span>
-                        </div>
-
-                        <div class="time-slot time-slot--booked">
-                            <div class="time-slot__avatar"></div>
-                            <span class="time-slot__time">11:40</span>
-                            <div class="time-slot__info">
-                                <div class="time-slot__client">Liz</div>
-                                <div class="time-slot__service">Pedicure</div>
-                            </div>
-                            <span class="time-slot__badge time-slot__badge--booked">Agendado</span>
-                            <span class="time-slot__menu">⋯</span>
-                        </div>
-
-                        <div class="time-slot">
-                            <div class="time-slot__avatar"></div>
-                            <span class="time-slot__time">12:00</span>
-                            <span class="time-slot__badge time-slot__badge--available">Disponível</span>
-                        </div>
-
-                        <div class="time-slot">
-                            <div class="time-slot__avatar"></div>
-                            <span class="time-slot__time">13:00</span>
-                            <span class="time-slot__badge time-slot__badge--available">Disponível</span>
-                        </div>
-
-                        <div class="time-slot time-slot--booked">
-                            <div class="time-slot__avatar"></div>
-                            <span class="time-slot__time">13:15</span>
-                            <div class="time-slot__info">
-                                <div class="time-slot__client">Tadeu</div>
-                                <div class="time-slot__service">Corte</div>
-                            </div>
-                            <span class="time-slot__badge time-slot__badge--booked">Agendado</span>
-                            <span class="time-slot__menu">⋯</span>
-                        </div>
-
-                        <div class="time-slot">
-                            <div class="time-slot__avatar"></div>
-                            <span class="time-slot__time">14:00</span>
-                            <span class="time-slot__badge time-slot__badge--available">Disponível</span>
-                        </div>
-
-                        <div class="time-slot">
-                            <div class="time-slot__avatar"></div>
-                            <span class="time-slot__time">15:00</span>
-                            <span class="time-slot__badge time-slot__badge--available">Disponível</span>
-                        </div>
-                    </div>
-                </section>
+        <div class="content">
+          <!-- Calendar Column -->
+          <section class="calendar-section">
+            <div class="day-card">
+              <div class="day-card__number" id="diaNumero">18</div>
+              <div class="day-card__weekday" id="diaSemana">Quarta-Feira</div>
+              <div class="day-card__month-year" id="diaMesAno">
+                Fevereiro 2026
+              </div>
             </div>
-        </main>
+
+            <div class="calendar">
+              <div class="calendar__header">
+                <button class="calendar__nav" onclick="mesAnterior()">◀</button>
+                <span class="calendar__month-year" id="mesAnoAtual"
+                  >Fev 2026</span
+                >
+                <button class="calendar__nav" onclick="proximoMes()">▶</button>
+              </div>
+              <div class="calendar__weekdays">
+                <span class="calendar__weekday">D</span>
+                <span class="calendar__weekday">S</span>
+                <span class="calendar__weekday">T</span>
+                <span class="calendar__weekday">Q</span>
+                <span class="calendar__weekday">Q</span>
+                <span class="calendar__weekday">S</span>
+                <span class="calendar__weekday">S</span>
+              </div>
+              <div class="calendar__days" id="diasMes"></div>
+            </div>
+          </section>
+
+          <!-- Schedule Column -->
+          <section class="schedule-section">
+            <h2 class="schedule__header">Agendamento de horários</h2>
+            <div class="schedule__grid">
+              <div class="time-slot time-slot--booked">
+                <div class="time-slot__avatar"></div>
+                <span class="time-slot__time">10:10</span>
+                <div class="time-slot__info">
+                  <div class="time-slot__client">Beatriz</div>
+                  <div class="time-slot__service">Manicure</div>
+                </div>
+                <span class="time-slot__badge time-slot__badge--booked"
+                  >Agendado</span
+                >
+                <span class="time-slot__menu">⋯</span>
+              </div>
+
+              <div class="time-slot">
+                <div class="time-slot__avatar"></div>
+                <span class="time-slot__time">11:00</span>
+                <span class="time-slot__badge time-slot__badge--available"
+                  >Disponível</span
+                >
+              </div>
+
+              <div class="time-slot time-slot--booked">
+                <div class="time-slot__avatar"></div>
+                <span class="time-slot__time">11:40</span>
+                <div class="time-slot__info">
+                  <div class="time-slot__client">Liz</div>
+                  <div class="time-slot__service">Pedicure</div>
+                </div>
+                <span class="time-slot__badge time-slot__badge--booked"
+                  >Agendado</span
+                >
+                <span class="time-slot__menu">⋯</span>
+              </div>
+
+              <div class="time-slot">
+                <div class="time-slot__avatar"></div>
+                <span class="time-slot__time">12:00</span>
+                <span class="time-slot__badge time-slot__badge--available"
+                  >Disponível</span
+                >
+              </div>
+
+              <div class="time-slot">
+                <div class="time-slot__avatar"></div>
+                <span class="time-slot__time">13:00</span>
+                <span class="time-slot__badge time-slot__badge--available"
+                  >Disponível</span
+                >
+              </div>
+
+              <div class="time-slot time-slot--booked">
+                <div class="time-slot__avatar"></div>
+                <span class="time-slot__time">13:15</span>
+                <div class="time-slot__info">
+                  <div class="time-slot__client">Tadeu</div>
+                  <div class="time-slot__service">Corte</div>
+                </div>
+                <span class="time-slot__badge time-slot__badge--booked"
+                  >Agendado</span
+                >
+                <span class="time-slot__menu">⋯</span>
+              </div>
+
+              <div class="time-slot">
+                <div class="time-slot__avatar"></div>
+                <span class="time-slot__time">14:00</span>
+                <span class="time-slot__badge time-slot__badge--available"
+                  >Disponível</span
+                >
+              </div>
+
+              <div class="time-slot">
+                <div class="time-slot__avatar"></div>
+                <span class="time-slot__time">15:00</span>
+                <span class="time-slot__badge time-slot__badge--available"
+                  >Disponível</span
+                >
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
     </div>
-    <script src="./calendario.js"></script>
-</body>
+    <script src="js/calendario.js"></script>
+  </body>
+</html>
