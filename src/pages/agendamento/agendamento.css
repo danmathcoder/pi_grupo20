@@ -5,7 +5,6 @@
 }
 
 body {
-  font-family: "IBM Plex Sans", sans-serif;
   background: #f0f2f5;
   min-height: 100vh;
   margin: 0;
@@ -89,7 +88,6 @@ h1 {
   width: 680px;
   height: 360px;
   margin: 0 auto;
-
   display: flex;
   flex-direction: column;
 }
@@ -118,15 +116,15 @@ label {
   color: #130757;
 }
 
-input,
-select {
+input, select {
   width: 100%;
   padding: 7px;
   border-radius: 8px;
   border: none;
-  background: #e9edf2;
+  background: #fff;
   color: #130757;
   outline: none;
+  text-align: center;
 }
 
 .actions {
