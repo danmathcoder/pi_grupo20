@@ -12,8 +12,6 @@ body {
   position: relative;
 }
 
-
-
 .content {
   flex: 1;
   text-align: center;
@@ -23,6 +21,7 @@ h1 {
   color: #41658a;
   margin-bottom: 20px;
   letter-spacing: 1px;
+  font-weight: 600;
 }
 
 .card {
