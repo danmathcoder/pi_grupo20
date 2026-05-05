@@ -1,0 +1,56 @@
+.btn_back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.btn_back:hover {
+  opacity: 0.8;
+}
+
+.btn_back:active {
+  opacity: 0.6;
+}
+
+.barra_lat {
+  width: 10%;
+  height: 100vh;
+  background-color: #130757;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.btn_config {
+  background: transparent;
+  border: none;
+  color: white;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  margin-top: 40px;
+}
+
+.btn_config:hover {
+  opacity: 0.8;
+}
+
+.btn_config:active {
+  opacity: 0.6;
+}
+
+.btn_config.active {
+  background: white;
+  color: #130757;
+}
