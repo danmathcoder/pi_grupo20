@@ -30,10 +30,9 @@ const horariosDisponiveis = [
   "17:00",
 ];
 
-let dataAtual = new Date(2026, 1, 18); // 18 de Fevereiro de 2026
-let dataSelecionada = new Date(2026, 1, 18);
+let dataAtual = new Date();
+let dataSelecionada = new Date(); 
 
-// Função para formatar data
 function formatarData(data) {
   const dias = [
     "Domingo",
@@ -59,22 +58,22 @@ function formatarData(data) {
     "Dezembro",
   ];
 
+  const dia = String(data.getDate()).padStart(2, "0");
+  const mes = String(data.getMonth() + 1).padStart(2, "0");
+  const ano = data.getFullYear();
+
   return {
-    numero: data.getDate(),
+    dataCompleta: `${dia}/${mes}/${ano}`,
     semana: dias[data.getDay()],
-    mesAno: `${meses[data.getMonth()]} ${data.getFullYear()}`,
   };
 }
 
-// Atualizar informações do dia selecionado
 function atualizarDiaSelecionado() {
   const formato = formatarData(dataSelecionada);
-  document.getElementById("diaNumero").textContent = formato.numero;
+  document.getElementById("diaNumero").textContent = formato.dataCompleta;
   document.getElementById("diaSemana").textContent = formato.semana;
-  document.getElementById("diaMesAno").textContent = formato.mesAno;
 }
 
-// Gerar lista de horários
 function gerarListaHorarios() {
   const dataStr = formatarDataParaString(dataSelecionada);
   const agendamentosDoDia = agendamentos[dataStr] || [];
@@ -110,7 +109,6 @@ function gerarListaHorarios() {
     listaHtml || "<p>Nenhum horário disponível</p>";
 }
 
-// Formatar data para string YYYY-MM-DD
 function formatarDataParaString(data) {
   const ano = data.getFullYear();
   const mes = String(data.getMonth() + 1).padStart(2, "0");
@@ -118,7 +116,6 @@ function formatarDataParaString(data) {
   return `${ano}-${mes}-${dia}`;
 }
 
-// Gerar calendário
 function gerarCalendario() {
   const ano = dataAtual.getFullYear();
   const mes = dataAtual.getMonth();
@@ -133,13 +130,10 @@ function gerarCalendario() {
 
   let calendarioHtml = "";
 
-  // Dias do mês anterior
-  for (let i = primeiroDiaSemana - 1; i >= 0; i--) {
-    const dia = diasDoMesAnterior - i;
-    calendarioHtml += `<div class="dia dia-outro-mes">${dia}</div>`;
+  for (let i = 0; i < primeiroDiaSemana; i++) {
+    calendarioHtml += `<div class="calendar__day calendar__day--empty"></div>`;
   }
 
-  // Dias do mês atual
   const hoje = new Date();
   const dataSelecionadaStr = formatarDataParaString(dataSelecionada);
 
@@ -149,19 +143,18 @@ function gerarCalendario() {
     const isSelecionado = dataStr === dataSelecionadaStr;
     const isHoje = dataAtualComparar.toDateString() === hoje.toDateString();
 
-    let classes = "dia";
-    if (isSelecionado) classes += " dia-selecionado-cal";
-    if (isHoje) classes += " dia-hoje";
+    let classes = "calendar__day";
+    if (isSelecionado) classes += " calendar__day--selected";
+    if (isHoje) classes += " calendar__day--today";
 
     calendarioHtml += `<div class="${classes}" onclick="selecionarDia(${ano}, ${mes}, ${dia})">${dia}</div>`;
   }
 
-  // Dias do próximo mês (para completar 42 dias - 6 linhas)
   const totalDias = primeiroDiaSemana + diasNoMes;
-  const diasRestantes = 42 - totalDias;
+  const diasRestantes = totalDias % 7 === 0 ? 0 : 7 - (totalDias % 7);
 
-  for (let dia = 1; dia <= diasRestantes; dia++) {
-    calendarioHtml += `<div class="dia dia-outro-mes">${dia}</div>`;
+  for (let i = 0; i < diasRestantes; i++) {
+    calendarioHtml += `<div class="calendar__day calendar__day--empty"></div>`;
   }
 
   document.getElementById("diasMes").innerHTML = calendarioHtml;
@@ -187,15 +180,13 @@ function getNomeMes(mes) {
   return meses[mes];
 }
 
-// Selecionar um dia
 function selecionarDia(ano, mes, dia) {
   dataSelecionada = new Date(ano, mes, dia);
   atualizarDiaSelecionado();
-  gerarCalendario(); // Re-renderiza para destacar o dia selecionado
+  gerarCalendario();
   gerarListaHorarios();
 }
 
-// Navegar entre meses
 function mesAnterior() {
   dataAtual = new Date(dataAtual.getFullYear(), dataAtual.getMonth() - 1, 1);
   gerarCalendario();
@@ -206,7 +197,6 @@ function proximoMes() {
   gerarCalendario();
 }
 
-// Inicializar página
 function init() {
   atualizarDiaSelecionado();
   gerarCalendario();

@@ -36,19 +36,30 @@
                     <p class="select-day-title">Dia selecionado:</p>
                     
                     <div class="show-full-date">
-                        <div class="date">
-                            13/05/2026
+                        <div class="date" id="diaNumero">
                         </div>
-                        <div class="name-date">
-                            Quarta-feira
+                        <div class="name-date" id="diaSemana">
                         </div>
                     </div>
                 </div>
                 
-                <p>LEEEFT</p>
-                <p>LEEEFT</p>
-                <p>LEEEFT</p>
-                <p>LEEEFT</p>
+                <div class="calendar">
+                  <div class="calendar__header">
+                    <button class="calendar__nav" onclick="mesAnterior()"><img src="../../assets/img/left-arrow.svg" alt="Left_Arrow" width="10px"></button>
+                    <span class="calendar__month-year" id="mesAnoAtual">Fev 2026</span>
+                    <button class="calendar__nav" onclick="proximoMes()"><img src="../../assets/img/right-arrow.svg" alt="Right_Arrow" width="10px"></button>
+                  </div>
+                  <div class="calendar__weekdays">
+                    <span class="calendar__weekday">D</span>
+                    <span class="calendar__weekday">S</span>
+                    <span class="calendar__weekday">T</span>
+                    <span class="calendar__weekday">Q</span>
+                    <span class="calendar__weekday">Q</span>
+                    <span class="calendar__weekday">S</span>
+                    <span class="calendar__weekday">S</span>
+                  </div>
+                  <div class="calendar__days" id="diasMes"></div>
+                </div>
             </div>
             <div class="linha-vertical" ></div>
             <div class="right">
@@ -62,5 +73,6 @@
             
         </div>
       </main>
+      <script src="js/calendario.js"></script>
   </body>
 </html>
