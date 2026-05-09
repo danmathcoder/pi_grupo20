@@ -17,17 +17,22 @@
   </head>
 
   <body>
-    <button class="btn_back" onclick="history.back()" >
-     <img src="../../assets/img/btn-back.svg" alt="voltar" width="30" height="30">
+    <button class="btn_back" onclick="location.href = '../../pages/index.html'" > 
+     <img src="../../assets/img/btn-back.svg" alt="voltar_para_inicio width="30" height="30">
     </button>
     <div class="full_box" style="display: flex">
       <div class="barra_lat">
+         <a onclick="location.href = '../../pages/consulta/consulta_agenda.html'">
         <button class="btn_config">
          <img src="../../assets/img/icon-calendar.svg" alt="calendario">
         </button>
+      </a>
+
+      <a onclick="location.href = '../../pages/agendamento/agendamento.html'">
         <button class="btn_config">
           <img src="../../assets/img/more.svg" alt="criar">
         </button>
+        </a>
       </div>
      <main class="content">
       <h1>Novo agendamento</h1>

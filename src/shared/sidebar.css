@@ -6,6 +6,7 @@
   border: none;
   color: white;
   cursor: pointer;
+  display: flex;
 }
 
 .btn_back:hover {
@@ -17,7 +18,7 @@
 }
 
 .barra_lat {
-  width: 112px;
+  width: 140px;
   height: 100vh;
   background-color: #130757;
   display: flex;

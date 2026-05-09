@@ -1,37 +1,36 @@
-// Dados dos agendamentos (simulando banco de dados)
 const agendamentos = {
-  "2026-02-18": [
+  "2026-05-08": [
     { hora: "10:10", cliente: "Beatriz", servico: "Manicure" },
+
     { hora: "11:40", cliente: "Liz", servico: "Pedicure" },
-  ],
-  "2026-02-19": [
-    { hora: "09:00", cliente: "Ana Silva", servico: "Cabelereira" },
+
     { hora: "14:30", cliente: "Mariana Costa", servico: "Maquiagem" },
   ],
-  "2026-02-20": [
+
+  "2026-05-09": [
     {
       hora: "15:00",
       cliente: "Fernanda Lima",
       servico: "Design de Sobrancelhas",
     },
   ],
+  "2026-09-15": [
+    { hora: "12:10", cliente: "Beatriz", servico: "Manicure" },
+
+    { hora: "18:00", cliente: "Liz", servico: "Pedicure" },
+
+    { hora: "14:30", cliente: "Mariana Costa", servico: "Maquiagem" },
+  ],
 };
 
-// Horários disponíveis padrão
-const horariosDisponiveis = [
-  "09:00",
-  "10:00",
-  "11:00",
-  "12:00",
-  "13:00",
-  "14:00",
-  "15:00",
-  "16:00",
-  "17:00",
-];
+const horariosDisponiveis = [];
+
+for (let hora = 10; hora <= 18; hora++) {
+  horariosDisponiveis.push(`${String(hora).padStart(2, "0")}:00`);
+}
 
 let dataAtual = new Date();
-let dataSelecionada = new Date(); 
+let dataSelecionada = new Date();
 
 function formatarData(data) {
   const dias = [
@@ -75,40 +74,49 @@ function atualizarDiaSelecionado() {
 }
 
 function gerarListaHorarios() {
+  const agenda = document.getElementById("agenda");
+
   const dataStr = formatarDataParaString(dataSelecionada);
+
   const agendamentosDoDia = agendamentos[dataStr] || [];
-  const horasAgendadas = agendamentosDoDia.map((a) => a.hora);
 
-  const listaHtml = horariosDisponiveis
-    .map((hora) => {
-      const agendamento = agendamentosDoDia.find((a) => a.hora === hora);
-      const isAgendado = !!agendamento;
+  let html = "";
 
-      if (isAgendado) {
-        return `
-            <div class="horario-item horario-item-agendado">
-              <div>
-                <div class="horario-hora">${hora}</div>
-                <div class="horario-cliente">${agendamento.cliente} - ${agendamento.servico}</div>
-              </div>
-              <span class="badge-status badge-agendado">Agendado</span>
-            </div>
-          `;
-      } else {
-        return `
-            <div class="horario-item horario-item-disponivel">
-              <div class="horario-hora">${hora}</div>
-              <span class="badge-status badge-disponivel">Disponível</span>
-            </div>
-          `;
-      }
-    })
-    .join("");
+  for (let hora = 10; hora <= 18; hora++) {
+    const horaFormatada = `${String(hora).padStart(2, "0")}:00`;
 
-  document.getElementById("listaHorarios").innerHTML =
-    listaHtml || "<p>Nenhum horário disponível</p>";
+    const agendamentosDaHora = agendamentosDoDia.filter((item) =>
+      item.hora.startsWith(String(hora).padStart(2, "0")),
+    );
+
+    let cardsHtml = "";
+
+    agendamentosDaHora.forEach((agendamento) => {
+      const minutos = Number(agendamento.hora.split(":")[1]);
+
+      const top = 70 + minutos * 8;
+
+      cardsHtml += `
+        <div 
+          class="card-agendamento"
+          style="top: ${top}px"
+        >
+          <div class="card-hora">${agendamento.hora}</div>
+          <div class="card-cliente">${agendamento.cliente}</div>
+        </div>
+      `;
+    });
+
+    html += `
+      <div class="coluna-horario">
+        <div class="titulo-hora">${horaFormatada}</div>
+        ${cardsHtml}
+      </div>
+    `;
+  }
+
+  agenda.innerHTML = html;
 }
-
 function formatarDataParaString(data) {
   const ano = data.getFullYear();
   const mes = String(data.getMonth() + 1).padStart(2, "0");

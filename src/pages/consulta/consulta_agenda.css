@@ -8,6 +8,7 @@ body {
   background: #f0f2f5;
   min-height: 100vh;
   max-height: 100vh;
+  overflow: hidden;
   margin: 0;
   padding: 0;
   position: relative;
@@ -15,10 +16,7 @@ body {
 
 .linha-vertical {
   width: 1px;
-  height: 100px;
   min-height: 100vh;
-  max-height: 100vh;
-  stroke-width: 1px;
   background-color: #1f1f64;
   opacity: 0.44;
 }
@@ -26,7 +24,8 @@ body {
 .consulting-box {
   display: flex;
   gap: 40px;
-  margin: 0px 0px 0px 24px;
+  margin-left: 24px;
+  height: 100vh;
 }
 
 .left {
@@ -37,7 +36,6 @@ body {
 
 .left h1 {
   color: #41658a;
-
   font-size: 40px;
   font-weight: 600;
 }
@@ -173,4 +171,58 @@ body {
 .calendar__day--other {
   color: #bcc7d9;
   cursor: default;
+}
+
+.right {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 20px 20px 20px 0;
+  height: 100vh;
+}
+
+.agenda {
+  display: flex;
+  gap: 18px;
+  align-items: stretch;
+  height: 100%;
+}
+
+.coluna-horario {
+  width: 140px;
+  min-width: 120px;
+  height: calc(100vh - 30px);
+  background: #dbe4ee;
+  border-radius: 10px;
+  position: relative;
+  padding-top: 70px;
+}
+
+.titulo-hora {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  color: #1f1f64;
+}
+
+.card-agendamento {
+  position: absolute;
+  width: 140px;
+  background: #355b84;
+  color: white;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.card-hora {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.card-cliente {
+  font-size: 24px;
+  font-weight: 600;
 }
