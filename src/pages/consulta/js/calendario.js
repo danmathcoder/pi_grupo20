@@ -1,3 +1,4 @@
+// mock
 const agendamentos = {
   "2026-05-08": [
     { hora: "10:10", cliente: "Beatriz", servico: "Manicure" },
