@@ -96,7 +96,7 @@ function gerarListaHorarios() {
       const minutos = Number(agendamento.hora.split(":")[1]);
 
       const top = 70 + minutos * 8;
-
+      console.log(agendamento)
       cardsHtml += `
         <div 
           class="card-agendamento"
