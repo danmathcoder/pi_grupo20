@@ -1,6 +1,6 @@
 // mock
 const agendamentos = {
-  "2026-05-08": [
+  "2026-05-14": [
     { hora: "10:10", cliente: "Beatriz", servico: "Manicure" },
 
     { hora: "11:40", cliente: "Liz", servico: "Pedicure" },
@@ -8,19 +8,19 @@ const agendamentos = {
     { hora: "14:30", cliente: "Mariana Costa", servico: "Maquiagem" },
   ],
 
-  "2026-05-09": [
+  "2026-05-15": [
     {
       hora: "15:00",
       cliente: "Fernanda Lima",
       servico: "Design de Sobrancelhas",
     },
   ],
-  "2026-09-15": [
+  "2026-05-16": [
     { hora: "12:10", cliente: "Beatriz", servico: "Manicure" },
 
     { hora: "18:00", cliente: "Liz", servico: "Pedicure" },
 
-    { hora: "14:30", cliente: "Mariana Costa", servico: "Maquiagem" },
+    { hora: "14:30", cliente: "Giovanna", servico: "Maquiagem" },
   ],
 };
 
@@ -96,7 +96,7 @@ function gerarListaHorarios() {
       const minutos = Number(agendamento.hora.split(":")[1]);
 
       const top = 70 + minutos * 8;
-      console.log(agendamento)
+      console.log(agendamento);
       cardsHtml += `
         <div 
           class="card-agendamento"
