@@ -12,8 +12,8 @@ app.use(express.static(path.join(__dirname, "src")));
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "06508",
-  database: "beleza_atendimento_db",
+  password: "sua_senha",
+  database: "seu_abnco",
 });
 
 db.connect((err) => {
@@ -29,5 +29,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("Servidor rodando em http://localhost:3000");
+  console.log("Servidor rodando em 3000");
 });
