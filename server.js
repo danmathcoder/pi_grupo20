@@ -12,8 +12,8 @@ app.use(express.static(path.join(__dirname, "src")));
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "sua_senha",
-  database: "seu_abnco",
+  password: "06508",
+  database: "beleza_atendimento_db",
 });
 
 db.connect((err) => {
@@ -26,6 +26,28 @@ db.connect((err) => {
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "src/pages/index.html"));
+});
+
+app.post("/salvar", (req, res) => {
+  const { nome, sobrenome, servico, data_atendimento, horario } = req.body;
+
+  const sql = `
+    INSERT INTO agendamento (nome, sobrenome, servico, data_atendimento, horario)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+
+  db.query(
+    sql,
+    [nome, sobrenome, servico, data_atendimento, horario],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send(`Erro ao agendar: ${err}`);
+      } else {
+        res.status(200).send("Agendamento Confirmado");
+      }
+    },
+  );
 });
 
 app.listen(3000, () => {

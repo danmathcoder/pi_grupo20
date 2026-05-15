@@ -75,16 +75,8 @@ select {
 
 .actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   margin-top: auto;
-}
-
-.cancel {
-  background: rgba(65, 101, 138, 0.15);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
 }
 
 .confirm {
