@@ -1,52 +1,20 @@
-// mock só trocar o nome  de onde ta 'agendamentos' pra esse que o mock aparece
-const agendamentos_mock = {
-  "2026-05-14": [
-    { hora: "10:10", cliente: "Beatriz", servico: "Manicure" },
 
-    { hora: "11:40", cliente: "Liz", servico: "Pedicure" },
-
-    { hora: "14:30", cliente: "Mariana Costa", servico: "Maquiagem" },
-  ],
-
-  "2026-05-15": [
-    {
-      hora: "15:00",
-      cliente: "Fernanda Lima",
-      servico: "Design de Sobrancelhas",
-    },
-  ],
-  "2026-05-16": [
-    { hora: "12:10", cliente: "Beatriz", servico: "Manicure" },
-
-    { hora: "18:00", cliente: "Liz", servico: "Pedicure" },
-
-    { hora: "14:30", cliente: "Giovanna", servico: "Maquiagem" },
-  ],
-};
 
 let agendamentos = {};
-
 async function carregarAgendamentos() {
-  const resposta = await fetch("/consulta-agendamentos");
+  const data = formatarDataParaString(dataSelecionada);
+
+  const resposta = await fetch(`/consulta-agendamentos?data=${data}`);
+
   const dados = await resposta.json();
 
   agendamentos = {};
 
-  dados.forEach((item) => {
-    const data = new Date(item.data_atendimento).toISOString().split("T")[0];
-
-    const horario = item.horario.slice(0, 5);
-
-    if (!agendamentos[data]) {
-      agendamentos[data] = [];
-    }
-
-    agendamentos[data].push({
-      hora: horario,
-      cliente: `${item.nome} ${item.sobrenome}`,
-      servico: item.servico,
-    });
-  });
+  agendamentos[data] = dados.map((item) => ({
+    hora: item.horario.slice(0, 5),
+    cliente: `${item.nome} ${item.sobrenome}`,
+    servico: item.servico,
+  }));
 
   gerarListaHorarios();
 }
@@ -217,11 +185,13 @@ function getNomeMes(mes) {
   return meses[mes];
 }
 
-function selecionarDia(ano, mes, dia) {
+async function selecionarDia(ano, mes, dia) {
   dataSelecionada = new Date(ano, mes, dia);
+
   atualizarDiaSelecionado();
   gerarCalendario();
-  gerarListaHorarios();
+
+  await carregarAgendamentos();
 }
 
 function mesAnterior() {

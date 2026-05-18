@@ -52,12 +52,16 @@ app.post("/salvar", (req, res) => {
 
 // traz os agendamentos
 app.get("/consulta-agendamentos", (req, res) => {
+  const { data } = req.query;
+
   const sql = `
-SELECT * 
-FROM agendamento
-ORDER BY data_atendimento, horario
-`;
-  db.query(sql, (err, results) => {
+    SELECT *
+    FROM agendamento
+    WHERE data_atendimento = ?
+    ORDER BY horario
+  `;
+
+  db.query(sql, [data], (err, results) => {
     if (err) {
       console.log(err);
       res.status(500).send("Erro ao consultar agendamentos");
