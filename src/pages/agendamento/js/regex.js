@@ -28,11 +28,8 @@ form.addEventListener("submit", async (e) => {
 
     if (resposta.ok) {
       form.reset();
-
-      alert(texto);
     }
   } catch (erro) {
     console.log(erro);
-    alert("Erro ao agendar");
   }
 });

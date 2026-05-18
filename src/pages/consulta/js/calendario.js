@@ -131,6 +131,7 @@ function gerarListaHorarios() {
         >
           <div class="card-hora">${agendamento.hora}</div>
           <div class="card-cliente">${agendamento.cliente}</div>
+          <div class="card-servico">${agendamento.servico}</div>
         </div>
       `;
     });
