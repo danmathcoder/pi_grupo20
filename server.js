@@ -52,7 +52,11 @@ app.post("/salvar", (req, res) => {
 
 // traz os agendamentos
 app.get("/consulta-agendamentos", (req, res) => {
-  const sql = "SELECT * FROM agendamento";
+  const sql = `
+SELECT * 
+FROM agendamento
+ORDER BY data_atendimento, horario
+`;
   db.query(sql, (err, results) => {
     if (err) {
       console.log(err);

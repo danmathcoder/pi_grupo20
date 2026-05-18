@@ -30,19 +30,21 @@ async function carregarAgendamentos() {
   const resposta = await fetch("/consulta-agendamentos");
   const dados = await resposta.json();
 
-  agendamentos = dados;
+  agendamentos = {};
 
   dados.forEach((item) => {
-    const data = item.data_atendimento;
+    const data = new Date(item.data_atendimento).toISOString().split("T")[0];
+
+    const horario = item.horario.slice(0, 5);
 
     if (!agendamentos[data]) {
       agendamentos[data] = [];
     }
 
     agendamentos[data].push({
-      hora: item.horario,
+      hora: horario,
       cliente: `${item.nome} ${item.sobrenome}`,
-      servico: item.tipo_servico,
+      servico: item.servico,
     });
   });
 
