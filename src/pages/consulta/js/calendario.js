@@ -1,5 +1,5 @@
-// mock
-const agendamentos = {
+// mock só trocar o nome  de onde ta 'agendamentos' pra esse que o mock aparece
+const agendamentos_mock = {
   "2026-05-14": [
     { hora: "10:10", cliente: "Beatriz", servico: "Manicure" },
 
@@ -23,6 +23,31 @@ const agendamentos = {
     { hora: "14:30", cliente: "Giovanna", servico: "Maquiagem" },
   ],
 };
+
+let agendamentos = {};
+
+async function carregarAgendamentos() {
+  const resposta = await fetch("/consulta-agendamentos");
+  const dados = await resposta.json();
+
+  agendamentos = dados;
+
+  dados.forEach((item) => {
+    const data = item.data_atendimento;
+
+    if (!agendamentos[data]) {
+      agendamentos[data] = [];
+    }
+
+    agendamentos[data].push({
+      hora: item.horario,
+      cliente: `${item.nome} ${item.sobrenome}`,
+      servico: item.tipo_servico,
+    });
+  });
+
+  gerarListaHorarios();
+}
 
 const horariosDisponiveis = [];
 
@@ -206,10 +231,11 @@ function proximoMes() {
   gerarCalendario();
 }
 
-function init() {
+async function init() {
   atualizarDiaSelecionado();
   gerarCalendario();
-  gerarListaHorarios();
+
+  await carregarAgendamentos();
 }
 
 init();

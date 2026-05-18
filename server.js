@@ -50,6 +50,19 @@ app.post("/salvar", (req, res) => {
   );
 });
 
+// traz os agendamentos
+app.get("/consulta-agendamentos", (req, res) => {
+  const sql = "SELECT * FROM agendamento";
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Erro ao consultar agendamentos");
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
 app.listen(3000, () => {
   console.log("Servidor rodando em 3000");
 });
