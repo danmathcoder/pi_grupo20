@@ -1,28 +1,23 @@
-// mock
-const agendamentos = {
-  "2026-05-08": [
-    { hora: "10:10", cliente: "Beatriz", servico: "Manicure" },
 
-    { hora: "11:40", cliente: "Liz", servico: "Pedicure" },
 
-    { hora: "14:30", cliente: "Mariana Costa", servico: "Maquiagem" },
-  ],
+let agendamentos = {};
+async function carregarAgendamentos() {
+  const data = formatarDataParaString(dataSelecionada);
 
-  "2026-05-09": [
-    {
-      hora: "15:00",
-      cliente: "Fernanda Lima",
-      servico: "Design de Sobrancelhas",
-    },
-  ],
-  "2026-09-15": [
-    { hora: "12:10", cliente: "Beatriz", servico: "Manicure" },
+  const resposta = await fetch(`/consulta-agendamentos?data=${data}`);
 
-    { hora: "18:00", cliente: "Liz", servico: "Pedicure" },
+  const dados = await resposta.json();
 
-    { hora: "14:30", cliente: "Mariana Costa", servico: "Maquiagem" },
-  ],
-};
+  agendamentos = {};
+
+  agendamentos[data] = dados.map((item) => ({
+    hora: item.horario.slice(0, 5),
+    cliente: `${item.nome} ${item.sobrenome}`,
+    servico: item.servico,
+  }));
+
+  gerarListaHorarios();
+}
 
 const horariosDisponiveis = [];
 
@@ -96,7 +91,7 @@ function gerarListaHorarios() {
       const minutos = Number(agendamento.hora.split(":")[1]);
 
       const top = 70 + minutos * 8;
-      console.log(agendamento)
+      console.log(agendamento);
       cardsHtml += `
         <div 
           class="card-agendamento"
@@ -104,6 +99,7 @@ function gerarListaHorarios() {
         >
           <div class="card-hora">${agendamento.hora}</div>
           <div class="card-cliente">${agendamento.cliente}</div>
+          <div class="card-servico">${agendamento.servico}</div>
         </div>
       `;
     });
@@ -189,11 +185,13 @@ function getNomeMes(mes) {
   return meses[mes];
 }
 
-function selecionarDia(ano, mes, dia) {
+async function selecionarDia(ano, mes, dia) {
   dataSelecionada = new Date(ano, mes, dia);
+
   atualizarDiaSelecionado();
   gerarCalendario();
-  gerarListaHorarios();
+
+  await carregarAgendamentos();
 }
 
 function mesAnterior() {
@@ -206,10 +204,11 @@ function proximoMes() {
   gerarCalendario();
 }
 
-function init() {
+async function init() {
   atualizarDiaSelecionado();
   gerarCalendario();
-  gerarListaHorarios();
+
+  await carregarAgendamentos();
 }
 
 init();

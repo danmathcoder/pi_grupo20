@@ -1,0 +1,26 @@
+{
+  "name": "pi_grupo20",
+  "version": "1.0.0",
+  "description": "Projeto front-end, criado totalmente para fins educativos para um sistema de agendamento de servicos voltado a profissionais de estetica. A aplicacao permite acessar uma tela inicial, criar um novo agendamento e consultar horarios em uma agenda com calendario.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danmathcoder/pi_grupo20.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/danmathcoder/pi_grupo20/issues"
+  },
+  "homepage": "https://github.com/danmathcoder/pi_grupo20#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mysql2": "^3.22.3"
+  }
+}
